@@ -2,7 +2,15 @@ import Label from "../Label";
 import Input from "../Input";
 import Select from "../Select"
 import Result from "../Result";
-const Form = () => (
+// import  {useState} from "react"
+import currencies from "../Currencies";
+
+const Form = () => {
+    // const [amount, setAmount] = useState("");
+    // const [currency, setCurrency] = useState(currency[1].index);
+
+
+return (
   <form className="form">
     <fieldset className="form__fieldset">
       <legend className="form__legend">Kalkulator walutowy</legend>
@@ -24,5 +32,5 @@ const Form = () => (
     </fieldset>
   </form>
 );
-
+}
 export default Form;

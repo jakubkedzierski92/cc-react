@@ -1,10 +1,16 @@
-const Select = () => (
-    <select className="form__fieldSelector">
-            <option value="4.70">Euro</option>
-            <option value="1" >
-              PLN
-            </option>
-            <option value="4.71">USD</option>
-          </select>
-)
+import currencies from "../Currencies";
+
+const Select = ({currency}) => (
+  <select
+  className="form__fieldSelector"
+  value={currency}>
+    {currencies.map((currency) => (
+        <option
+        key = {currency.id}
+        value = {currency.index}
+        >{currency.index}</option>
+    ))}
+    
+  </select>
+);
 export default Select;
