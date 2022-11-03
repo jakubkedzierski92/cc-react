@@ -2,12 +2,12 @@ import Label from "../Label";
 import Input from "../Input";
 import Select from "../Select"
 import Result from "../Result";
-// import  {useState} from "react"
+import  {useState} from "react"
 import currencies from "../Currencies";
 
 const Form = () => {
-    // const [amount, setAmount] = useState("");
-    // const [currency, setCurrency] = useState(currency[1].index);
+    const [amount, setAmount] = useState("");
+    // const [currency, setCurrency] = useState(currency[0].index);
 
 
 return (
@@ -18,7 +18,7 @@ return (
       <p>
         <Label 
         title ={"Mam:"}
-        body = {<Input />}
+        body = {<Input amount={amount} setAmount={setAmount} />}
         content = {<Select />}
         />
       </p>

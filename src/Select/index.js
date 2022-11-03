@@ -3,7 +3,9 @@ import currencies from "../Currencies";
 const Select = ({currency}) => (
   <select
   className="form__fieldSelector"
-  value={currency}>
+  value={currency}
+//   onChange = {({ target }) => setCurrency(target.value)}
+  >
     {currencies.map((currency) => (
         <option
         key = {currency.id}
