@@ -7,8 +7,8 @@ import currencies from "../Currencies";
 
 const Form = () => {
     const [amount, setAmount] = useState("");
-    // const [currency, setCurrency] = useState(currency[0].index);
-
+    const [currency, setCurrency] = useState("");
+    
 
 return (
   <form className="form">
@@ -19,7 +19,7 @@ return (
         <Label 
         title ={"Mam:"}
         body = {<Input amount={amount} setAmount={setAmount} />}
-        content = {<Select />}
+        content = {<Select currencies={currencies} currency={currency} setCurrency={setCurrency} />}
         />
       </p>
       <p className="form__paragraph">
