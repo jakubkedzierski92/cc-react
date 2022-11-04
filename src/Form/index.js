@@ -37,7 +37,9 @@ const Form = () => {
         <p className="form__paragraph">
           <Label
             title={"Chcę:"}
-            body={<Result setResult={setResult} />}
+            body={<Result
+            result = {result}
+             setResult={setResult} />}
             content={
               <Select
               // currencies={currencies}
