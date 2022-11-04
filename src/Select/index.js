@@ -1,8 +1,9 @@
 import currencies from "../Currencies";
+import { useState } from "react";
 
-
-const Select = (currency, setCurrency) => {
-  
+const Select = () => {
+    
+const [currency, setCurrency] = useState("");
 const onSelectChange = ({ target }) => setCurrency(target.value)
 
   return (

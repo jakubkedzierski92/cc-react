@@ -1,8 +1,10 @@
+import { useState } from "react";
 
+const Input = () => {
 
-const Input = (amount, setAmount) => {
-    
-return (
+    const [amount, setAmount] = useState("");
+
+    return (
     <input 
     className="form__input" 
     type="number" 
