@@ -1,16 +1,20 @@
 import Label from "../Label";
-import Input from "../Input";
-import Select from "../Select";
-import Result from "../Result";
 import { useState } from "react";
 import currencies from "../Currencies";
 
 const Form = () => {
+  const [amount, setAmount] = useState("");
+  const [currency, setCurrency] = useState(currencies[0].index);
+  const onSelectChange = ({ target }) => setCurrency(target.value);
   const [result, setResult] = useState("0.0");
+
   const calculateResult = (amount, currency) => {
-    const result = amount * currency.value / currency.value;
+    const rate = currencies.find(({ index }) => index === currency).value;
+    const currencyIn = amount * rate;
+    const result = currencyIn / rate;
     setResult(result);
   };
+
   return (
     <form className="form" onSubmit={calculateResult}>
       <fieldset className="form__fieldset">
@@ -20,32 +24,50 @@ const Form = () => {
           <Label
             title={"Mam:"}
             body={
-              <Input
-              // amount={amount}
-              // setAmount={setAmount}
+              <input
+                className="form__input"
+                type="number"
+                min="1"
+                placeholder="wpisz kwotę"
+                value={amount}
+                onChange={({ target }) => setAmount(target.value)}
               />
             }
             content={
-              <Select
-              // currencies={currencies}
-              // currency={currency}
-              // setCurrency={setCurrency}
-              />
+              <select
+                className="form__fieldSelector"
+                value={currency}
+                onChange={onSelectChange}
+              >
+                {currencies.map((currency) => (
+                  <option key={currency.id} value={currency.index}>
+                    {currency.index}
+                  </option>
+                ))}
+              </select>
             }
           />
         </p>
         <p className="form__paragraph">
           <Label
             title={"Chcę:"}
-            body={<Result
-            result = {result}
-             setResult={setResult} />}
+            body={
+              <span className="form__result" value={result}>
+                {result}
+              </span>
+            }
             content={
-              <Select
-              // currencies={currencies}
-              // currency={currency}
-              // setCurrency={setCurrency}
-              />
+              <select
+                className="form__fieldSelector"
+                value={currency}
+                onChange={onSelectChange}
+              >
+                {currencies.map((currency) => (
+                  <option key={currency.id} value={currency.index}>
+                    {currency.index}
+                  </option>
+                ))}
+              </select>
             }
           />
         </p>
