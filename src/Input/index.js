@@ -1,19 +1,19 @@
-import { useState } from "react";
+// import { useState } from "react";
 
-const Input = () => {
+// const Input = () => {
 
-    const [amount, setAmount] = useState("");
+//     const [amount, setAmount] = useState("");
 
-    return (
-    <input 
-    className="form__input" 
-    type="number" 
-    min="1" 
-    placeholder ="wpisz kwotę"
-    value = {amount}
-    onChange = {({ target }) => setAmount(target.value)}
-    />
-)
-    }
+//     return (
+//     <input 
+//     className="form__input" 
+//     type="number" 
+//     min="1" 
+//     placeholder ="wpisz kwotę"
+//     value = {amount}
+//     onChange = {({ target }) => setAmount(target.value)}
+//     />
+// )
+//     }
 
-export default Input;
+// export default Input;

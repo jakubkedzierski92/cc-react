@@ -1,9 +1,13 @@
 import Form from "./Form";
 
-function App() {
+
+function App () {
+
+  
   return (
     <div className="App">
-      <Form />
+      <Form 
+      />
     </div>
   );
 }

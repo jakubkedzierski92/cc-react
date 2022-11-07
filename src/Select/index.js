@@ -1,25 +1,25 @@
-import currencies from "../Currencies";
-import { useState } from "react";
+// import currencies from "../Currencies";
+// import { useState } from "react";
 
-const Select = () => {
-    
-const [currency, setCurrency] = useState("");
-const onSelectChange = ({ target }) => setCurrency(target.value)
+// const Select = () => {
 
-  return (
-    <select className="form__fieldSelector" 
-    value={currency}
-    onChange={onSelectChange}
-    >
-      {currencies.map((currency) => (
-        <option 
-        key={currency.id}
-        value={currency.index}>
-        {currency.index}
-        </option>
-      ))}
-    </select>
-  );
-};
+// const [currency, setCurrency] = useState("");
+// const onSelectChange = ({ target }) => setCurrency(target.value)
 
-export default Select;
+//   return (
+//     <select className="form__fieldSelector" 
+//     value={currency}
+//     onChange={onSelectChange}
+//     >
+//       {currencies.map((currency) => (
+//         <option 
+//         key={currency.id}
+//         value={currency.index}>
+//         {currency.index}
+//         </option>
+//       ))}
+//     </select>
+//   );
+// };
+
+// export default Select;
