@@ -1,0 +1,86 @@
+.form__field {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    margin-left: 10px;
+   
+  }
+  .form__fieldSelector {
+    width: 100%;
+    max-width: 100px;
+    padding: 5px;
+    margin-left: 5px;
+    text-align: center;
+    
+  }
+  
+  .form__legend {
+    border: 2px solid hsl(240, 83%, 40%);
+    padding: 10px;
+    background-color: #09095d;
+    color: white;
+  }
+  
+  .form__fieldset {
+    border: 2px solid hsl(240, 83%, 40%);
+    display: inline;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .form__field:active {
+    border: 1px solid hsl(85, 83%, 60%);
+  }
+  
+  
+  
+  
+  .form {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .form__input {
+    text-align: left;
+    padding: 5px;
+  
+  }
+  
+  .form__result {
+    border: 1px solid black;
+    padding: 5px;
+    width: 100%;
+    text-align: right;
+    max-width: 184px;
+    resize: none;
+    display: inline-block;
+    border-radius: 4px;
+    
+  }
+  
+  .form__fieldSelector--special {
+    width: 100%;
+    max-width: 100px;
+    padding: 5px;
+    margin-right: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .form__paragraph {
+    display: inline;
+    width: 500px;
+    
+  }
+  
+  .background {
+    background-image: url("https://i.ibb.co/yF9tFdy/exchange.png") ;
+    max-height: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: 600px;
+    background-position: bottom;
+    background-attachment: local;
+  }

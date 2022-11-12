@@ -1,7 +1,7 @@
 import Label from "../Label";
 import { useState } from "react";
 import currencies from "../Currencies";
-
+import "./style.css"
 const Form = () => {
   const [amount, setAmount] = useState("");
   const [currency, setCurrency] = useState(currencies[0].index);
@@ -10,9 +10,11 @@ const Form = () => {
 
   const calculateResult = (event) => {
     event.preventDefault();
-    const rate = currencies.find(({ index }) => index === currency).value
-    const rateOut = currencies.find(({ index }) => index === currencyOutcome).value
-    const result = amount * rate/ rateOut;
+    const rate = currencies.find(({ index }) => index === currency).value;
+    const rateOut = currencies.find(
+      ({ index }) => index === currencyOutcome
+    ).value;
+    const result = (amount * rate) / rateOut;
     setResult(result.toFixed(2));
     console.log(result);
   };
@@ -21,7 +23,6 @@ const Form = () => {
     <form className="form" onSubmit={calculateResult}>
       <fieldset className="form__fieldset">
         <legend className="form__legend">Kalkulator walutowy</legend>
-
         <p>
           <Label
             title={"Mam:"}
@@ -50,9 +51,9 @@ const Form = () => {
             }
           />
         </p>
-        <span>
+        <p>
           <button>Przelicz</button>
-        </span>
+        </p>
         <p className="form__paragraph">
           <Label
             setResult={setResult}
@@ -62,10 +63,8 @@ const Form = () => {
               <span
                 className="form__result"
                 value={result}
-                
                 onChange={({ target }) => setResult(target.value)}
               >
-               
                 {result}
               </span>
             }
