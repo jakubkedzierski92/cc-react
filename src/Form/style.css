@@ -48,15 +48,9 @@
   
   }
   
-  .form__result {
-    border: 1px solid black;
-    padding: 5px;
-    width: 100%;
+  .form__input--result {
     text-align: right;
-    max-width: 184px;
-    resize: none;
-    display: inline-block;
-    border-radius: 4px;
+    padding: 5px; 
     
   }
   
@@ -73,6 +67,7 @@
     display: inline;
     width: 500px;
     
+    
   }
   
   .background {
@@ -83,4 +78,18 @@
     background-size: 600px;
     background-position: bottom;
     background-attachment: local;
+  }
+
+  .button {
+    padding: 5px;
+    width: 100px;
+    background-color: #09095d;
+    color: white;
+    border: 2px solid hsl(240, 83%, 40%);
+  }
+
+  .button__paragraph{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 100px;
   }

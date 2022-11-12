@@ -51,8 +51,11 @@ const Form = () => {
             }
           />
         </p>
-        <p>
-          <button>Przelicz</button>
+        <p className="button__paragraph">
+          <button
+          className="button"
+          >Przelicz
+          </button>
         </p>
         <p className="form__paragraph">
           <Label
@@ -60,13 +63,13 @@ const Form = () => {
             result={result}
             title={"Chcę:"}
             body={
-              <span
-                className="form__result"
+              <input
+                className="form__input--result"
                 value={result}
                 onChange={({ target }) => setResult(target.value)}
-              >
-                {result}
-              </span>
+                disabled
+              />
+             
             }
             content={
               <select
