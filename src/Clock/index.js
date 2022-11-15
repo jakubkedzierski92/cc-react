@@ -11,7 +11,7 @@ const Clock = () => {
    const date = CurrentDate();
    
    return(
-   <p>Dzisiaj jest {displayDate(date)} </p>
+   <p className="clock__paragraph"> Dzisiaj jest {displayDate(date)} </p>
    )
 }
 

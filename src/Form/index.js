@@ -30,9 +30,7 @@ const Form = () => {
     <form className="form" onSubmit={calculateResult}>
       <fieldset className="form__fieldset">
         <legend className="form__legend">Kalkulator walutowy</legend>
-        <p className="clock__paragraph">
-          <Clock />
-          </p>
+        <Clock />
         <p>
           <Label
             title={"Mam:"}
