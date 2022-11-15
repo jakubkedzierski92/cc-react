@@ -1,13 +1,19 @@
-// import Date from "./date"
+import { CurrentDate } from "./date"
 
-// const Clock = () => {
+const displayDate = (date) => date.toLocaleTimeString(undefined, {
+    weekday: "long",
+    day: "numeric",
+    month: "numeric",
+})
 
-//    const date = Date()
+const Clock = () => {
+
+   const date = CurrentDate();
    
-//    return(
-//    <span>dzisiaj jest {date}</span>
-//    )
-// }
+   return(
+   <p>Dzisiaj jest {displayDate(date)} </p>
+   )
+}
 
-// export default Clock
+export default Clock
 

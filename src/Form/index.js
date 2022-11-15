@@ -1,18 +1,23 @@
 import Label from "../Label";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import currencies from "../Currencies";
-import "./style.css"
+import "./style.css";
+import Clock from "../Clock/index.js";
 
 const Form = () => {
   const [amount, setAmount] = useState("");
   const [currency, setCurrency] = useState(currencies[0].shortName);
-  const [currencyOutcome, setCurrencyOutcome] = useState(currencies[1].shortName);
+  const [currencyOutcome, setCurrencyOutcome] = useState(
+    currencies[1].shortName
+  );
   const [result, setResult] = useState("0.0");
 
   const calculateResult = (event) => {
     event.preventDefault();
 
-    const rate = currencies.find(({ shortName }) => shortName === currency).value;
+    const rate = currencies.find(
+      ({ shortName }) => shortName === currency
+    ).value;
     const rateOut = currencies.find(
       ({ shortName }) => shortName === currencyOutcome
     ).value;
@@ -26,8 +31,8 @@ const Form = () => {
       <fieldset className="form__fieldset">
         <legend className="form__legend">Kalkulator walutowy</legend>
         <p className="clock__paragraph">
-       
-        </p>
+          <Clock />
+          </p>
         <p>
           <Label
             title={"Mam:"}
@@ -57,11 +62,7 @@ const Form = () => {
           />
         </p>
         <p className="button__paragraph">
-          <button
-            className="button"
-          >
-            Przelicz
-          </button>
+          <button className="button">Przelicz</button>
         </p>
         <p className="form__paragraph">
           <Label
@@ -75,7 +76,6 @@ const Form = () => {
                 onChange={({ target }) => setResult(target.value)}
                 disabled
               />
-             
             }
             content={
               <select
@@ -83,7 +83,7 @@ const Form = () => {
                 value={currencyOutcome}
                 onChange={({ target }) => setCurrencyOutcome(target.value)}
               >
-                {currencies.map(({shortName}) => (
+                {currencies.map(({ shortName }) => (
                   <option key={shortName} value={shortName}>
                     {shortName}
                   </option>
