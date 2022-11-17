@@ -1,5 +1,5 @@
 import Label from "../Label";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import currencies from "../Currencies";
 import "./style.css";
 import Clock from "../Clock/index.js";
@@ -22,11 +22,12 @@ const Form = () => {
       ({ shortName }) => shortName === currencyOutcome
     ).value;
 
-    const result = (amount * rate) / rateOut;
-    setResult(result.toFixed(2));
+    const outcome = (amount * rate) / rateOut;
+    setResult(outcome.toFixed(2));
   };
 
   return (
+    <div className="background">
     <form className="form" onSubmit={calculateResult}>
       <fieldset className="form__fieldset">
         <legend className="form__legend">Kalkulator walutowy</legend>
@@ -65,7 +66,7 @@ const Form = () => {
         <p className="form__paragraph">
           <Label
             setResult={setResult}
-            outcome={result}
+            result={result}
             title={"Chcę:"}
             body={
               <input
@@ -92,6 +93,7 @@ const Form = () => {
         </p>
       </fieldset>
     </form>
+    </div>
   );
 };
 export default Form;
