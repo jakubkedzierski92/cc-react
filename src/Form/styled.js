@@ -34,8 +34,8 @@ export const Input = styled.input`
   text-align: left;
   padding: 5px;
 
-  ${({ result }) =>
-    result &&
+  ${({ outcome }) =>
+    outcome &&
     css`
       text-align: right;
       padding: 5px;

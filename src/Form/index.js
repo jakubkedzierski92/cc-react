@@ -78,7 +78,7 @@ const Form = () => {
               title={"Chcę:"}
               body={
                 <Input
-                  result
+                  outcome
                   value={result}
                   onChange={({ target }) => setResult(target.value)}
                   disabled
