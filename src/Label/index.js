@@ -1,6 +1,6 @@
 const Label = ({ title, body, content }) => (
   <label>
-    <span className="form__labelText">{title}</span>
+    <span>{title}</span>
     {body}
     {content}
   </label>

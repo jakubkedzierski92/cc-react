@@ -1,11 +1,13 @@
 import Form from "./Form";
-import "./index.css"
+import "./styled"
+import { StyledContainer } from "./styled";
+
 
 function App () {
   return (
-    <div className="container">
+    <StyledContainer>
       <Form />
-    </div>
+    </StyledContainer>
   );
 }
 

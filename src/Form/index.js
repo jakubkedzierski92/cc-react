@@ -1,8 +1,18 @@
 import Label from "../Label";
 import { useState } from "react";
 import currencies from "../Currencies";
-import "./style.css";
 import Clock from "../Clock/index.js";
+import {
+  Background,
+  Button,
+  ButtonParagraph,
+  Fieldset,
+  FormParagraph,
+  Input,
+  Legend,
+  Selector,
+  StyledForm,
+} from "./styled";
 
 const Form = () => {
   const [amount, setAmount] = useState("");
@@ -27,73 +37,70 @@ const Form = () => {
   };
 
   return (
-    <div className="background">
-    <form className="form" onSubmit={calculateResult}>
-      <fieldset className="form__fieldset">
-        <legend className="form__legend">Kalkulator walutowy</legend>
-        <Clock />
-        <p>
-          <Label
-            title={"Mam:"}
-            body={
-              <input
-                className="form__input"
-                type="number"
-                min="1"
-                placeholder="wpisz kwotę"
-                value={amount}
-                onChange={({ target }) => setAmount(target.value)}
-              />
-            }
-            content={
-              <select
-                className="form__fieldSelector"
-                value={currency}
-                onChange={({ target }) => setCurrency(target.value)}
-              >
-                {currencies.map(({ shortName }) => (
-                  <option key={shortName} value={shortName}>
-                    {shortName}
-                  </option>
-                ))}
-              </select>
-            }
-          />
-        </p>
-        <p className="button__paragraph">
-          <button className="button">Przelicz</button>
-        </p>
-        <p className="form__paragraph">
-          <Label
-            setResult={setResult}
-            result={result}
-            title={"Chcę:"}
-            body={
-              <input
-                className="form__input--result"
-                value={result}
-                onChange={({ target }) => setResult(target.value)}
-                disabled
-              />
-            }
-            content={
-              <select
-                className="form__fieldSelector"
-                value={currencyOutcome}
-                onChange={({ target }) => setCurrencyOutcome(target.value)}
-              >
-                {currencies.map(({ shortName }) => (
-                  <option key={shortName} value={shortName}>
-                    {shortName}
-                  </option>
-                ))}
-              </select>
-            }
-          />
-        </p>
-      </fieldset>
-    </form>
-    </div>
+    <Background>
+      <StyledForm onSubmit={calculateResult}>
+        <Fieldset>
+          <Legend>Kalkulator walutowy</Legend>
+          <Clock />
+          <p>
+            <Label
+              title={"Mam:"}
+              body={
+                <Input
+                  type="number"
+                  min="1"
+                  placeholder="wpisz kwotę"
+                  value={amount}
+                  onChange={({ target }) => setAmount(target.value)}
+                />
+              }
+              content={
+                <Selector
+                  value={currency}
+                  onChange={({ target }) => setCurrency(target.value)}
+                >
+                  {currencies.map(({ shortName }) => (
+                    <option key={shortName} value={shortName}>
+                      {shortName}
+                    </option>
+                  ))}
+                </Selector>
+              }
+            />
+          </p>
+          <ButtonParagraph>
+            <Button>Przelicz</Button>
+          </ButtonParagraph>
+          <FormParagraph>
+            <Label
+              setResult={setResult}
+              result={result}
+              title={"Chcę:"}
+              body={
+                <Input
+                  result
+                  value={result}
+                  onChange={({ target }) => setResult(target.value)}
+                  disabled
+                />
+              }
+              content={
+                <Selector
+                  value={currencyOutcome}
+                  onChange={({ target }) => setCurrencyOutcome(target.value)}
+                >
+                  {currencies.map(({ shortName }) => (
+                    <option key={shortName} value={shortName}>
+                      {shortName}
+                    </option>
+                  ))}
+                </Selector>
+              }
+            />
+          </FormParagraph>
+        </Fieldset>
+      </StyledForm>
+    </Background>
   );
 };
 export default Form;
