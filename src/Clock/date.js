@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
- export const CurrentDate = () => {
-    const [date, setDate] = useState(new Date());
+//  export const CurrentDate = () => {
+//     const [date, setDate] = useState(new Date());
     
-    useEffect(() => {
-      const intervalId = setInterval(() => {
-        setDate(new Date());
-      }, 1000);
+//     useEffect(() => {
+//       const intervalId = setInterval(() => {
+//         setDate(new Date());
+//       }, 1000);
   
-      return () => {
-        clearInterval(intervalId);
-      };
-    }, []);
+//       return () => {
+//         clearInterval(intervalId);
+//       };
+//     }, []);
 
-    return date;
-};
+//     return date;
+// };
 
