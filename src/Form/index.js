@@ -1,5 +1,5 @@
 import Label from "../Label";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import currencies from "../Currencies";
 import Clock from "../Clock/index.js";
 import {
@@ -21,6 +21,10 @@ const Form = () => {
     currencies[1].shortName
   );
   const [result, setResult] = useState("0.0");
+  const inputRef = useRef(null);
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
 
   const calculateResult = (event) => {
     event.preventDefault();
@@ -47,6 +51,7 @@ const Form = () => {
               title={"Mam:"}
               body={
                 <Input
+                  ref={inputRef}
                   type="number"
                   min="1"
                   placeholder="wpisz kwotę"
@@ -69,7 +74,7 @@ const Form = () => {
             />
           </p>
           <ButtonParagraph>
-            <Button>Przelicz</Button>
+            <Button onClick={focusInput}>Przelicz</Button>
           </ButtonParagraph>
           <FormParagraph>
             <Label

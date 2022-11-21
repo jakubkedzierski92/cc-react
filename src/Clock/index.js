@@ -1,6 +1,5 @@
-// import { CurrentDate } from "./date";
+import { useCurrentDate } from "./date";
 import { ClockParagraph } from "./styled";
-import { useEffect, useState } from "react";
 
 const displayDate = (date) =>
   date.toLocaleTimeString(undefined, {
@@ -10,19 +9,7 @@ const displayDate = (date) =>
   });
 
 const Clock = () => {
-  const [date, setDate] = useState(new Date());
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
-
-  return <ClockParagraph> Dzisiaj jest {displayDate(date)} </ClockParagraph>;
+  return <ClockParagraph> Dzisiaj jest {displayDate(useCurrentDate())} </ClockParagraph>;
 };
 
 export default Clock;
