@@ -1,6 +1,6 @@
 import Label from "../Label";
-import { useState, useRef } from "react";
-import currencies from "../Currencies";
+import { useState, useRef, useEffect } from "react";
+// import currencies from "../Currencies";
 import Clock from "../Clock/index.js";
 import {
   Background,
@@ -13,30 +13,40 @@ import {
   Selector,
   StyledForm,
 } from "./styled";
+import axios from "axios";
 
 const Form = () => {
   const [amount, setAmount] = useState("");
-  const [currency, setCurrency] = useState(currencies[0].shortName);
-  const [currencyOutcome, setCurrencyOutcome] = useState(
-    currencies[1].shortName
-  );
+  const [currency, setCurrency] = useState([]);
+  const [currencyOutcome, setCurrencyOutcome] = useState([]);
   const [result, setResult] = useState("0.0");
+  const [toCurrency, setToCurrency] = useState();
+  const [fromCurrency, setFromCurrency] = useState([]);
+  const [rate, setRate] = useState();
+  const [outcomeRate, setOutcomeRate] = useState();
   const inputRef = useRef(null);
+
   const focusInput = () => {
     inputRef.current.focus();
   };
 
+  useEffect(() => {
+    axios.get("https://api.exchangerate.host/base=USD").then((response) => {
+      const apiData = response.data;
+      const selectedCurrency = Object.keys(apiData.rates)[0];
+      setCurrency([apiData.base, ...Object.keys(apiData.rates)]);
+      setCurrencyOutcome([apiData.base, ...Object.keys(apiData.rates)]);
+      setFromCurrency(apiData.base);
+      setToCurrency(selectedCurrency);
+      setRate(apiData.rates[selectedCurrency]);
+      setOutcomeRate(apiData.rates[fromCurrency]);
+    });
+  }, []);
+ 
   const calculateResult = (event) => {
     event.preventDefault();
 
-    const rate = currencies.find(
-      ({ shortName }) => shortName === currency
-    ).value;
-    const rateOut = currencies.find(
-      ({ shortName }) => shortName === currencyOutcome
-    ).value;
-
-    const outcome = (amount * rate) / rateOut;
+    const outcome = (amount * rate) / outcomeRate;
     setResult(outcome.toFixed(2));
   };
 
@@ -61,12 +71,13 @@ const Form = () => {
               }
               content={
                 <Selector
-                  value={currency}
-                  onChange={({ target }) => setCurrency(target.value)}
+                  value={fromCurrency}
+                  currency={currency}
+                  onChange={({ target }) => setFromCurrency(target.value)}
                 >
-                  {currencies.map(({ shortName }) => (
-                    <option key={shortName} value={shortName}>
-                      {shortName}
+                  {currency.map((currency) => (
+                    <option key={currency} value={currency}>
+                      {currency}
                     </option>
                   ))}
                 </Selector>
@@ -91,12 +102,13 @@ const Form = () => {
               }
               content={
                 <Selector
-                  value={currencyOutcome}
-                  onChange={({ target }) => setCurrencyOutcome(target.value)}
+                  value={toCurrency}
+                  currencyOutcome={currencyOutcome}
+                  onChange={({ target }) => setToCurrency(target.value)}
                 >
-                  {currencies.map(({ shortName }) => (
-                    <option key={shortName} value={shortName}>
-                      {shortName}
+                  {currencyOutcome.map((currencyOutcome) => (
+                    <option key={currencyOutcome} value={currencyOutcome}>
+                      {currencyOutcome}
                     </option>
                   ))}
                 </Selector>

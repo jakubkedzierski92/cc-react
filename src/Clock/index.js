@@ -5,7 +5,7 @@ const displayDate = (date) =>
   date.toLocaleTimeString(undefined, {
     weekday: "long",
     day: "numeric",
-    month: "numeric",
+    month: "long",
   });
 
 const Clock = () => {
