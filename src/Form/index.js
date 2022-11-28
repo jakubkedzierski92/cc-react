@@ -1,6 +1,6 @@
 import Label from "../Label";
-import { useState, useRef, useEffect } from "react";
-// import currencies from "../Currencies";
+import { useState } from "react";
+import { useEffect, useRef } from "react";
 import Clock from "../Clock/index.js";
 import {
   Background,
@@ -12,44 +12,44 @@ import {
   Legend,
   Selector,
   StyledForm,
+  Info
 } from "./styled";
-import axios from "axios";
+  import axios from "axios"
 
 const Form = () => {
   const [amount, setAmount] = useState("");
-  const [currency, setCurrency] = useState([]);
-  const [currencyOutcome, setCurrencyOutcome] = useState([]);
   const [result, setResult] = useState("0.0");
-  const [toCurrency, setToCurrency] = useState();
-  const [fromCurrency, setFromCurrency] = useState([]);
-  const [rate, setRate] = useState();
-  const [outcomeRate, setOutcomeRate] = useState();
+  const [rates, setRates] = useState([])
+  const [fromCurrency, setFromCurrency] = useState();
+  const [toCurrency, setToCurrency] = useState()
+  const [date, setDate] = useState()
+
   const inputRef = useRef(null);
+
 
   const focusInput = () => {
     inputRef.current.focus();
   };
 
+
   useEffect(() => {
-    axios.get("https://api.exchangerate.host/base=USD").then((response) => {
-      const apiData = response.data;
-      const selectedCurrency = Object.keys(apiData.rates)[0];
-      setCurrency([apiData.base, ...Object.keys(apiData.rates)]);
-      setCurrencyOutcome([apiData.base, ...Object.keys(apiData.rates)]);
-      setFromCurrency(apiData.base);
-      setToCurrency(selectedCurrency);
-      setRate(apiData.rates[selectedCurrency]);
-      setOutcomeRate(apiData.rates[fromCurrency]);
-    });
-  }, []);
- 
+    axios.get("https://api.exchangerate.host/latest?base=PLN")
+    .then(response => {
+      setRates(response.data.rates);
+      setFromCurrency(response.data.base)
+      setToCurrency(response.data.base)
+      setDate(response.data.date)
+     
+    })
+    
+  }, [])
+
   const calculateResult = (event) => {
     event.preventDefault();
-
-    const outcome = (amount * rate) / outcomeRate;
+    
+    const outcome = (amount * rates[fromCurrency]) / rates[toCurrency] 
     setResult(outcome.toFixed(2));
   };
-
   return (
     <Background>
       <StyledForm onSubmit={calculateResult}>
@@ -72,12 +72,11 @@ const Form = () => {
               content={
                 <Selector
                   value={fromCurrency}
-                  currency={currency}
                   onChange={({ target }) => setFromCurrency(target.value)}
                 >
-                  {currency.map((currency) => (
-                    <option key={currency} value={currency}>
-                      {currency}
+                  {Object.keys(rates).map((fromCurrency) => (
+                    <option key={fromCurrency} value={fromCurrency}>
+                      {fromCurrency}
                     </option>
                   ))}
                 </Selector>
@@ -103,12 +102,11 @@ const Form = () => {
               content={
                 <Selector
                   value={toCurrency}
-                  currencyOutcome={currencyOutcome}
                   onChange={({ target }) => setToCurrency(target.value)}
                 >
-                  {currencyOutcome.map((currencyOutcome) => (
-                    <option key={currencyOutcome} value={currencyOutcome}>
-                      {currencyOutcome}
+                  {Object.keys(rates).map((toCurrency) => (
+                    <option key={toCurrency} value={toCurrency}>
+                      {toCurrency}
                     </option>
                   ))}
                 </Selector>
@@ -116,6 +114,7 @@ const Form = () => {
             />
           </FormParagraph>
         </Fieldset>
+       <Info>Kursy walut pobrane w dniu:  {date}</Info>
       </StyledForm>
     </Background>
   );

@@ -67,3 +67,10 @@ export const Button = styled.button`
   color: white;
   border: 2px solid hsl(240, 83%, 40%);
 `;
+
+export const Info = styled.p`
+text-align: start;
+font-size: 12px;
+margin-left: 16px;
+padding: 2px;
+`
