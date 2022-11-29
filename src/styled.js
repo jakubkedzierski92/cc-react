@@ -15,6 +15,7 @@ export const StyledContainer = styled.div`
     monospace;
 
   @media (max-width: 767px) {
+    max-width: 400px;
     padding: 0px;
     padding-right: 5px;
     margin-right: 5px;
