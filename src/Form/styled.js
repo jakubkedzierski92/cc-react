@@ -8,8 +8,6 @@ export const Background = styled.div`
   background-size: 600px;
   background-position: bottom;
   background-attachment: local;
-
- 
 `;
 
 export const StyledForm = styled.form`
@@ -23,10 +21,7 @@ export const Fieldset = styled.fieldset`
   width: 100%;
   align-items: center;
   justify-content: center;
-
-  
 `;
-
 
 export const Legend = styled.legend`
   border: 2px solid hsl(240, 83%, 40%);
@@ -56,7 +51,7 @@ export const Selector = styled.select`
   margin-left: 0px;
   text-align: center;
 
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     width: auto;
   }
 `;
@@ -80,8 +75,23 @@ export const Button = styled.button`
 `;
 
 export const Info = styled.p`
-text-align: start;
-font-size: 12px;
-margin-left: 16px;
-padding: 2px;
-`
+  text-align: start;
+  font-size: 12px;
+  margin-left: 16px;
+  padding: 2px;
+`;
+
+export const Loader = styled.div`
+  width: 500px;
+  height: 200px;
+  border: 2px solid hsl(240, 83%, 40%);
+  margin-top: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #09095d;
+`;
+export const LoaderSpan = styled.span`
+  color: white;
+`;

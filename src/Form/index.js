@@ -12,45 +12,55 @@ import {
   Legend,
   Selector,
   StyledForm,
-  Info
+  Info,
+  Loader,
+  LoaderSpan,
 } from "./styled";
-  import axios from "axios"
+import axios from "axios";
 
 const Form = () => {
   const [amount, setAmount] = useState("");
   const [result, setResult] = useState("0.0");
-  const [rates, setRates] = useState([])
+  const [rates, setRates] = useState([]);
   const [fromCurrency, setFromCurrency] = useState();
-  const [toCurrency, setToCurrency] = useState()
-  const [date, setDate] = useState()
+  const [toCurrency, setToCurrency] = useState();
+  const [date, setDate] = useState();
+  const [loading, setLoading] = useState(false);
 
   const inputRef = useRef(null);
-
 
   const focusInput = () => {
     inputRef.current.focus();
   };
 
-
   useEffect(() => {
-    axios.get("https://api.exchangerate.host/latest?base=PLN")
-    .then(response => {
-      setRates(response.data.rates);
-      setFromCurrency(response.data.base)
-      setToCurrency(response.data.base)
-      setDate(response.data.date)
-     
-    })
-    
-  }, [])
+    setLoading(true);
+
+    setTimeout(() => {
+      axios
+        .get("https://api.exchangerate.host/latest?base=PLN")
+        .then((response) => {
+          setRates(response.data.rates);
+          setFromCurrency(response.data.base);
+          setToCurrency(response.data.base);
+          setDate(response.data.date);
+          setLoading(false)
+        });
+    }, 3000);
+  }, []);
 
   const calculateResult = (event) => {
     event.preventDefault();
-    
-    const outcome = (amount * rates[fromCurrency]) / rates[toCurrency] 
+
+    const outcome = (amount * rates[fromCurrency]) / rates[toCurrency];
     setResult(outcome.toFixed(2));
   };
-  return (
+
+  return loading ? (
+    <Loader>
+      <LoaderSpan>Pobieram akutalne kursy walut...</LoaderSpan>
+    </Loader>
+  ) : (
     <Background>
       <StyledForm onSubmit={calculateResult}>
         <Fieldset>
@@ -114,7 +124,7 @@ const Form = () => {
             />
           </FormParagraph>
         </Fieldset>
-       <Info>Kursy walut pobrane w dniu:  {date}</Info>
+        <Info>Kursy walut pobrane w dniu: {date}</Info>
       </StyledForm>
     </Background>
   );
