@@ -1,6 +1,6 @@
 import Label from "../Label";
 import { useState } from "react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Clock from "../Clock/index.js";
 import {
   Background,
@@ -15,17 +15,14 @@ import {
   Info,
   Loader,
   LoaderSpan,
+  ErrorSpan,
+  ErrorDiv,
 } from "./styled";
-import axios from "axios";
+import { useCurrentData } from "./useCurrentData";
 
 const Form = () => {
   const [amount, setAmount] = useState("");
   const [result, setResult] = useState("0.0");
-  const [rates, setRates] = useState([]);
-  const [fromCurrency, setFromCurrency] = useState();
-  const [toCurrency, setToCurrency] = useState();
-  const [date, setDate] = useState();
-  const [loading, setLoading] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -33,21 +30,16 @@ const Form = () => {
     inputRef.current.focus();
   };
 
-  useEffect(() => {
-    setLoading(true);
-
-    setTimeout(() => {
-      axios
-        .get("https://api.exchangerate.host/latest?base=PLN")
-        .then((response) => {
-          setRates(response.data.rates);
-          setFromCurrency(response.data.base);
-          setToCurrency(response.data.base);
-          setDate(response.data.date);
-          setLoading(false)
-        });
-    }, 3000);
-  }, []);
+  const {
+    isError,
+    loading,
+    date,
+    toCurrency,
+    fromCurrency,
+    rates,
+    setToCurrency,
+    setFromCurrency,
+  } = useCurrentData();
 
   const calculateResult = (event) => {
     event.preventDefault();
@@ -60,6 +52,10 @@ const Form = () => {
     <Loader>
       <LoaderSpan>Pobieram akutalne kursy walut...</LoaderSpan>
     </Loader>
+  ) : isError ? (
+    <ErrorDiv>
+      <ErrorSpan>Coś poszło nie tak... spróbuj później.</ErrorSpan>
+    </ErrorDiv>
   ) : (
     <Background>
       <StyledForm onSubmit={calculateResult}>

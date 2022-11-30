@@ -95,3 +95,18 @@ export const Loader = styled.div`
 export const LoaderSpan = styled.span`
   color: white;
 `;
+
+export const ErrorDiv = styled.div`
+  width: 500px;
+  height: 200px;
+  border: 2px solid hsl(240, 83%, 40%);
+  margin-top: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #09095d;
+`;
+export const ErrorSpan = styled.span`
+  color: white;
+`;
