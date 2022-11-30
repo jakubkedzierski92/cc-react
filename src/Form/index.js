@@ -44,7 +44,7 @@ const Form = () => {
   const calculateResult = (event) => {
     event.preventDefault();
 
-    const outcome = (amount * rates[fromCurrency]) / rates[toCurrency];
+    const outcome = (amount * rates[toCurrency] / rates[fromCurrency]);
     setResult(outcome.toFixed(2));
   };
 
