@@ -26,7 +26,7 @@ export const useCurrentData = () => {
           console.error("Something went wrong", error);
           setIsError(isError);
         });
-    }, 3000);
+    }, 2000);
   }, []);
   return {
     isError,
@@ -37,5 +37,6 @@ export const useCurrentData = () => {
     rates,
     setFromCurrency,
     setToCurrency,
+    date
   };
 };
