@@ -23,7 +23,7 @@ export const useCurrentData = () => {
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Something went wrong", error);
+          console.error("Something went wrong");
           setIsError(isError);
         });
     }, 2000);
